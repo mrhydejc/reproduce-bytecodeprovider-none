@@ -1,0 +1,32 @@
+name: Native Build
+
+on: push
+
+jobs:
+    build:
+        runs-on: ubuntu-20.04
+        steps:
+            -   uses: actions/checkout@v3
+            -   name: Set up JDK 17
+                uses: actions/setup-java@v3
+                with:
+                    java-version: '17'
+                    distribution: 'adopt'
+                    cache: 'maven'
+            -   name: NativeImage
+                uses: graalvm/setup-graalvm@v1
+                if: "!contains(github.event.head_commit.message, 'skipnativebuild')"
+                with:
+                    java-version: '17'
+                    version: 'latest'
+                    components: 'native-image'
+                    cache: 'maven'
+                    github-token: ${{ secrets.GITHUB_TOKEN }}
+            -   name: "Build native image"
+                run: |
+                    mvn --batch-mode -Pnative clean native:compile -DskipTests
+            -   name: "Upload artifact"
+                uses: actions/upload-artifact@v3
+                with:
+                    name: executable
+                    path: target/reproduce-bytecodeprovider-none
