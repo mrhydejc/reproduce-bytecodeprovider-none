@@ -1,10 +1,7 @@
 package com.example.reproducebytecodeprovidernone;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.random.RandomGenerator;
 
@@ -12,20 +9,19 @@ import java.util.random.RandomGenerator;
 public class EntityHandler {
 
     @Autowired
-    private Repository repository;
+    private EntityRepository entityRepository;
+    @Autowired
+    private OtherEntityRepository otherEntityRepository;
 
-    @PostConstruct
-    public void init() {
-        repository.save(new Entity(1L,"someData"));
-    }
-
-    @Transactional
     public long trigger() {
-        repository.save(new Entity(RandomGenerator.getDefault().nextLong(), "someData"));
-        return repository.count();
+        final OtherEntityLazyLoaded otherEntityLazyLoaded = new OtherEntityLazyLoaded();
+        otherEntityRepository.save(otherEntityLazyLoaded);
+        entityRepository.save(new Entity(RandomGenerator.getDefault().nextLong(), "someData", otherEntityLazyLoaded));
+        return entityRepository.count();
     }
 
-    public String loadById(long id) {
-        return repository.getReferenceById(id).getData();
+    public String loadById() {
+        final Entity entity = entityRepository.findById(entityRepository.findAll().get(0).getId()).get();
+        return entity.getData() + entity.getOtherEntityLazyLoaded().getId();
     }
 }
