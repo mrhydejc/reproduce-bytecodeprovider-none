@@ -2,14 +2,19 @@ Reproducer for the following error:
 
 `org.hibernate.HibernateException: Generation of HibernateProxy instances at runtime is not allowed when the configured BytecodeProvider is 'none'; your model requires a more advanced BytecodeProvider to be enabled.`
 
+# Build the multi-module project
+`mvn clean install`
+
 # Working example with regular jvm :
-`run mvn spring-boot:run`
+open server dir
+`mvn spring-boot:run`
 goto http://127.0.0.1:8080/read
 
 # Not working example with a native image
+open server dir
 ```
 mvn -Pnative spring-boot:build-image
-docker.io/library/reproduce-bytecodeprovider-none:0.0.1-SNAPSHOT
+docker.io/library/reproduce-server:0.0.1-SNAPSHOT
 ```
 
 goto http://127.0.0.1:8080/read
