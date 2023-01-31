@@ -2,13 +2,17 @@ Reproducer for the following error:
 
 `org.hibernate.HibernateException: Generation of HibernateProxy instances at runtime is not allowed when the configured BytecodeProvider is 'none'; your model requires a more advanced BytecodeProvider to be enabled.`
 
-To reproduce build as native image, start and then open:
+# Working example with regular jvm :
+`run mvn spring-boot:run`
+goto http://127.0.0.1:8080/read
 
-1. http://127.0.0.1:8080/trigger
-2. http://127.0.0.1:8080/load
+# Not working example with a native image
+```
+mvn -Pnative spring-boot:build-image
+docker.io/library/reproduce-bytecodeprovider-none:0.0.1-SNAPSHOT
+```
 
-It's caused by lazy loading of entities, it seems. Although I've had the same error even with "normal" entities where the stacktrace was mostly the same.
-The contained code should reproduce it.
+goto http://127.0.0.1:8080/read
 
 Sample stacktrace:
 
