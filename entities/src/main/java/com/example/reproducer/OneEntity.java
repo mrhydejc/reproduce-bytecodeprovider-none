@@ -5,29 +5,24 @@ import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class OneEntity {
+public class OneEntity extends BaseEntity {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    private Long id;
+    @NotNull
     private String data;
 
     @OneToMany(mappedBy = "oneEntity", cascade = CascadeType.ALL)
     private Set<OtherEntity> otherEntityLazyLoaded = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent")
+    private OtherEntity parent;
 
     public String getData() {
         return data;
@@ -44,6 +39,5 @@ public class OneEntity {
     public void setOtherEntityLazyLoaded(Set<OtherEntity> otherEntityLazyLoaded) {
         this.otherEntityLazyLoaded = otherEntityLazyLoaded;
     }
-
     
 }

@@ -13,8 +13,8 @@ goto http://127.0.0.1:8080/read
 # Not working example with a native image
 open server dir
 ```
-mvn -Pnative spring-boot:build-image
-docker.io/library/reproduce-server:0.0.1-SNAPSHOT
+mvn -Pnative spring-boot:build-image &&
+docker run -p 8080:8080 docker.io/library/reproduce-server:0.0.1-SNAPSHOT
 ```
 
 goto http://127.0.0.1:8080/read
