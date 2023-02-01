@@ -1,4 +1,6 @@
-package com.example.reproducer;
+package com.example.reproducer.model;
+
+import com.example.base.BaseEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

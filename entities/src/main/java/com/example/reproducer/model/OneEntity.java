@@ -1,7 +1,9 @@
-package com.example.reproducer;
+package com.example.reproducer.model;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import com.example.base.BaseEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

@@ -12,3 +12,7 @@ spring:
       hibernate:
         default_batch_fetch_size: 128
         criteria.literal_handling_mode: inline
+
+logging:
+  level:
+    root: DEBUG

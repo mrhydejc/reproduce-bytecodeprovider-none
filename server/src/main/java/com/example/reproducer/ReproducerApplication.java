@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.example.reproducer.dao.OneEntityRepository;
+import com.example.reproducer.model.OneEntity;
+import com.example.reproducer.model.OtherEntity;
 
 @SpringBootApplication
 public class ReproducerApplication {
