@@ -1,4 +1,4 @@
-package com.example.reproducer;
+package com.example.reproducer.mapper;
 
 import java.util.Set;
 
@@ -11,5 +11,7 @@ public class OneEntityDto {
     private String data;
 
     private Set<OtherEntityDto> otherEntityLazyLoaded;
+
+    private OneEntityDto parent;
     
 }

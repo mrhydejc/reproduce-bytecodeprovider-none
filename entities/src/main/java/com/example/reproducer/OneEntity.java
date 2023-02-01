@@ -39,5 +39,14 @@ public class OneEntity extends BaseEntity {
     public void setOtherEntityLazyLoaded(Set<OtherEntity> otherEntityLazyLoaded) {
         this.otherEntityLazyLoaded = otherEntityLazyLoaded;
     }
+
+    public OtherEntity getParent() {
+        return parent;
+    }
+
+    public void setParent(OtherEntity parent) {
+        this.parent = parent;
+    }
+    
     
 }

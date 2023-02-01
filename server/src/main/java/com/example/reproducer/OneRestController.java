@@ -7,6 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.reproducer.dao.OneEntityRepository;
+import com.example.reproducer.mapper.OneEntityDto;
+
 @RestController
 public class OneRestController {
 

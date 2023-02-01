@@ -20,6 +20,8 @@ public class RuntimeHintsConfig {
                         MemberCategory.values());
                 hints.reflection().registerTypeIfPresent(classLoader, "org.hibernate.dialect.H2Dialect",
                         MemberCategory.values());
+                hints.reflection().registerTypeIfPresent(classLoader, "com.arx.common.model.Bean",
+                        MemberCategory.values());
 
             } catch (Exception e) {
                 e.printStackTrace();

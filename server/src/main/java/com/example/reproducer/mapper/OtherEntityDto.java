@@ -1,4 +1,4 @@
-package com.example.reproducer;
+package com.example.reproducer.mapper;
 
 import lombok.Data;
 
