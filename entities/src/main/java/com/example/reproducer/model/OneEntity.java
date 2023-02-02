@@ -9,6 +9,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
@@ -25,6 +27,11 @@ public class OneEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent")
     private OtherEntity parent;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "entityHasChild", joinColumns = { @JoinColumn(name = "parentId") }, inverseJoinColumns = {
+            @JoinColumn(name = "childId") })
+    private Set<OneEntity> childSet = new HashSet<>();
 
     public String getData() {
         return data;
@@ -49,6 +56,13 @@ public class OneEntity extends BaseEntity {
     public void setParent(OtherEntity parent) {
         this.parent = parent;
     }
-    
-    
+
+    public Set<OneEntity> getChildSet() {
+        return childSet;
+    }
+
+    public void setChildSet(Set<OneEntity> childSet) {
+        this.childSet = childSet;
+    }
+
 }

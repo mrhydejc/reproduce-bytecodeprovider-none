@@ -8,10 +8,13 @@ import lombok.Data;
 public class OneEntityDto {
 
     private Long id;
+
     private String data;
 
     private Set<OtherEntityDto> otherEntityLazyLoaded;
 
-    private OneEntityDto parent;
+    private OtherEntityDto parent;
+
+    private Set<OneEntityDto> childSet;
     
 }

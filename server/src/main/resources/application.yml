@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb;MODE=PostgreSQL
+    url: jdbc:h2:mem:testdb;
   jpa:
-    database: postgresql
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      naming:
+    # database: postgresql
+    # database-platform: org.hibernate.dialect.H2Dialect
+    # hibernate:
+      # naming:
         #Use same database name as java attribute instead of snakeCase
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        # physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
         default_batch_fetch_size: 128
@@ -16,3 +16,6 @@ spring:
 logging:
   level:
     root: DEBUG
+
+server:
+  port: 9080

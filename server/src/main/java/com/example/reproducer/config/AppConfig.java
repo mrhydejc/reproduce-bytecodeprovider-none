@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.example.reproducer.dao")
-@EntityScan(basePackages = {"com.example.base", "com.example.reproducer.model"})
+@EntityScan(basePackages = {"com.example.base", "com.example.reproducer.model", "com.arx.crm.model"})
 @ComponentScan({ "com.example.reproducer" })
 @Configuration
 public class AppConfig {
